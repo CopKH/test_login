@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 24.0),
             TextButton(
               onPressed: () async {
-                final SharedPreferences prefs = await _prefs;
+              
                 String username = _usernameController.text;
                 String password = _passwordController.text;
                 if (username.isNotEmpty && password.isNotEmpty) {
@@ -77,9 +77,10 @@ class _LoginPageState extends State<LoginPage> {
                       .loginAPI(username, password)
                       .then((value) async {
                     // obtain shared preferences
+                    //   final SharedPreferences prefs = await _prefs;
 
-                    await prefs.setString('username', username);
-                    await prefs.setString('password', password);
+                    // await prefs.setString('username', username);
+                    // await prefs.setString('password', password);
                     Navigator.of(context)
                         .pushNamed(MainScreen.routeName, arguments: null);
                   });

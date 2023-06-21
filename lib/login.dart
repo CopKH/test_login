@@ -16,27 +16,27 @@ class _LoginPageState extends State<LoginPage> {
   var _isInit = true;
   var _isLoading = false;
   @override
-  void didChangeDependencies() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? username = prefs.getString('username');
-    final String? password = prefs.getString('password');
-    if (username != '') {
-      setState(() {
-        _isLoading = true;
-      });
-      await Provider.of<Auth>(context, listen: false)
-          .loginAPI(username!, password!)
-          .then((value) async {
-        Navigator.of(context).pushNamed(MainScreen.routeName, arguments: null);
-        final prefs = await SharedPreferences.getInstance();
+  // void didChangeDependencies() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final String? username = prefs.getString('username');
+  //   final String? password = prefs.getString('password');
+  //   if (username != '') {
+  //     setState(() {
+  //       _isLoading = true;
+  //     });
+  //     await Provider.of<Auth>(context, listen: false)
+  //         .loginAPI(username!, password!)
+  //         .then((value) async {
+  //       Navigator.of(context).pushNamed(MainScreen.routeName, arguments: null);
+  //       final prefs = await SharedPreferences.getInstance();
 
-        await prefs.setString('username', username);
-        await prefs.setString('password', password);
-      });
-    }
-    _isInit = false;
-    super.didChangeDependencies();
-  }
+  //       await prefs.setString('username', username);
+  //       await prefs.setString('password', password);
+  //     });
+  //   }
+  //   _isInit = false;
+  //   super.didChangeDependencies();
+  // }
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();

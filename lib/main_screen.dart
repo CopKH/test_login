@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_test/image_screen.dart';
 import 'package:login_test/product_screen.dart';
 import 'package:login_test/profile_screen.dart';
 import 'package:login_test/setting_screen.dart';
@@ -18,6 +19,7 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     ProductScreen(),
     ProfileScreen(),
+    EditImageScreen(),
     SettingPage(),
   ];
 
@@ -67,6 +69,10 @@ class _MainScreenState extends State<MainScreen> {
                 label: 'Profile',
               ),
               BottomNavigationBarItem(
+                icon: Icon(Icons.image),
+                label: 'Edit Image',
+              ),
+               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: 'Settings',
               ),

@@ -7,4 +7,4 @@ for test to project feature
 - and instance setting such as  hide email, enable notifications
 
 new feature 1.1 
-- take picture , edit and save in gallery (only Android)
+- take a picture , edit and save in gallery (only Android)

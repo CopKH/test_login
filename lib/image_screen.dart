@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:image_painter/image_painter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:open_file/open_file.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class EditImageScreen extends StatefulWidget {
   const EditImageScreen({super.key});
@@ -37,7 +38,6 @@ class _EditImageScreenState extends State<EditImageScreen> {
     }
   }
 
-
   void saveImage() async {
     // print('saveImage');
     final image = await _imageKey.currentState?.exportImage();
@@ -47,28 +47,35 @@ class _EditImageScreenState extends State<EditImageScreen> {
         '$directory/sample/${DateTime.now().millisecondsSinceEpoch}.png';
     final imgFile = File('$fullPath');
     // print('image');
-    // print(image);
-    imgFile.writeAsBytesSync(image as List<int>);
+    // print(image as List<int>);
+    // imgFile.writeAsBytesSync(image as List<int>);
+    // await ImageGallerySaver.saveImage(image!);
+    final result = await ImageGallerySaver.saveImage(image!);
+    print('Image saved to gallery: $result');
+
     // imgFile.writeAsBytesSync(image as List<int>);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.grey[700],
         padding: const EdgeInsets.only(left: 10),
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text("Image Exported successfully.",
-                style: TextStyle(color: Colors.white)),
-            TextButton(
-              onPressed: () => OpenFile.open("$fullPath"),
-              child: Text(
-                "Open",
-                style: TextStyle(
-                  color: Colors.blue[200],
-                ),
-              ),
-            )
-          ],
+        content: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text("Image Exported successfully.",
+                  style: TextStyle(color: Colors.white)),
+              // TextButton(
+              //   onPressed: () => OpenFile.open("$fullPath"),
+              //   child: Text(
+              //     "Open",
+              //     style: TextStyle(
+              //       color: Colors.blue[200],
+              //     ),
+              //   ),
+              // )
+            ],
+          ),
         ),
       ),
     );
@@ -94,8 +101,7 @@ class _EditImageScreenState extends State<EditImageScreen> {
                 initialPaintMode: PaintMode.line,
               ),
             ElevatedButton(
-                onPressed: saveImage,
-                child: const Text('Save Image'))
+                onPressed: saveImage, child: const Text('Save Image'))
           ],
         ),
       ),

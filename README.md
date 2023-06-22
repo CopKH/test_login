@@ -5,3 +5,6 @@ for test to project feature
 - fetch products data with https://dummyjson.com/docs/products
 - fetch profile data with  respone to login api
 - and instance setting such as  hide email, enable notifications
+
+new feature 1.1 
+- take paicture , edit and save in gallery (only Android)
